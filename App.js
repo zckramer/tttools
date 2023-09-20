@@ -1,20 +1,68 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View, Button, Modal } from 'react-native';
+import { useState } from 'react';
+import NewButtonForm from './components/forms/NewButtonForm';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	const [buttonsList, setButtonsList] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+
+	const handleShowModal = () => {
+		setShowModal(!showModal);
+		console.log('click!');
+	};
+
+	const handleAddButton = (newButtonToAdd) => {
+		setButtonsList((currentButtonsList) => [
+			...currentButtonsList,
+			newButtonToAdd,
+		]);
+	};
+
+	return (
+		<View style={styles.mainView}>
+			<View style={styles.buttonsList}>
+				{buttonsList.map((button) => (
+					<Button
+						style={styles.button}
+						title={`${button}`}
+					/>
+				))}
+			</View>
+			<Button
+				title='Create a Button'
+				onPress={handleShowModal}
+			/>
+			<Modal
+				onRequestClose={handleShowModal}
+				visible={showModal}
+			>
+				<NewButtonForm
+					style={styles.mainView}
+					handleCloseForm={() => handleShowModal()}
+					handleAddNewButton={(newButtonLabel) =>
+						handleAddButton(newButtonLabel)
+					}
+				/>
+			</Modal>
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	mainView: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	buttonsList: {
+		backgroundColor: '#f2f2f2',
+		borderRadius: 12,
+		padding: 8,
+	},
+	button: {
+		color: '#000000',
+		margin: 12,
+		backgroundColor: 'Green',
+	},
 });
