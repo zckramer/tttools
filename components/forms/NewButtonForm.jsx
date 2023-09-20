@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { useState } from 'react';
 
-const NewButtonForm = (props) => {
+const NewButtonForm = props => {
 	const [textInputLabel, setTextInputLabel] = useState('');
 
 	function handleTextInput(enteredText) {
@@ -23,7 +23,7 @@ const NewButtonForm = (props) => {
 
 	return (
 		<SafeAreaView>
-			<View style={styles.mainView}>
+			<View style={styles.formView}>
 				<Text>New Button Label:</Text>
 				<TextInput
 					onChangeText={handleTextInput}
@@ -38,23 +38,13 @@ const NewButtonForm = (props) => {
 	);
 };
 
-const styles = StyleSheet.create({
-	mainView: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	buttonsList: {
-		backgroundColor: '#f2f2f2',
-		borderRadius: 12,
-		padding: 8,
-	},
-	button: {
-		color: '#000000',
-		margin: 12,
-		backgroundColor: 'Green',
-	},
-});
-
 export default NewButtonForm;
+
+const styles = StyleSheet.create({
+	formView: {
+		backgroundColor: 'lightBlue',
+		padding: 22,
+		margin: 22,
+		borderRadius: 22,
+	}
+});

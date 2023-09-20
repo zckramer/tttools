@@ -32,20 +32,21 @@ export default function App() {
 				title='Create a Button'
 				onPress={handleShowModal}
 			/>
-			<Modal
-				onRequestClose={handleShowModal}
-				visible={showModal}
-			>
-				<NewButtonForm
-					style={styles.mainView}
-					handleCloseForm={() =>
-						handleShowModal()
-					}
-					handleAddNewButton={newButtonLabel =>
-						handleAddButton(newButtonLabel)
-					}
-				/>
-			</Modal>
+			<View style={styles.modalView}>
+				<Modal
+					animationType='slide'
+					onRequestClose={handleShowModal}
+					visible={showModal}
+				>
+					<NewButtonForm
+						style={styles.mainView}
+						handleCloseForm={() => handleShowModal()}
+						handleAddNewButton={newButtonLabel =>
+							handleAddButton(newButtonLabel)
+						}
+					/>
+				</Modal>
+			</View>
 		</View>
 	);
 }
@@ -56,6 +57,9 @@ const styles = StyleSheet.create({
 		backgroundColor: '#fff',
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	modalView: {
+		padding: 16,
 	},
 	buttonsList: {
 		backgroundColor: '#f2f2f2',
