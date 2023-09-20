@@ -2,6 +2,7 @@ import {
 	View,
 	Text,
 	SafeAreaView,
+	StyleSheet,
 	TextInput,
 	Button,
 } from 'react-native';
@@ -22,7 +23,7 @@ const NewButtonForm = (props) => {
 
 	return (
 		<SafeAreaView>
-			<View>
+			<View style={styles.mainView}>
 				<Text>New Button Label:</Text>
 				<TextInput
 					onChangeText={handleTextInput}
@@ -36,5 +37,24 @@ const NewButtonForm = (props) => {
 		</SafeAreaView>
 	);
 };
+
+const styles = StyleSheet.create({
+	mainView: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	buttonsList: {
+		backgroundColor: '#f2f2f2',
+		borderRadius: 12,
+		padding: 8,
+	},
+	button: {
+		color: '#000000',
+		margin: 12,
+		backgroundColor: 'Green',
+	},
+});
 
 export default NewButtonForm;

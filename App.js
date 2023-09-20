@@ -11,8 +11,8 @@ export default function App() {
 		console.log('click!');
 	};
 
-	const handleAddButton = (newButtonToAdd) => {
-		setButtonsList((currentButtonsList) => [
+	const handleAddButton = newButtonToAdd => {
+		setButtonsList(currentButtonsList => [
 			...currentButtonsList,
 			newButtonToAdd,
 		]);
@@ -21,7 +21,7 @@ export default function App() {
 	return (
 		<View style={styles.mainView}>
 			<View style={styles.buttonsList}>
-				{buttonsList.map((button) => (
+				{buttonsList.map(button => (
 					<Button
 						style={styles.button}
 						title={`${button}`}
@@ -38,8 +38,10 @@ export default function App() {
 			>
 				<NewButtonForm
 					style={styles.mainView}
-					handleCloseForm={() => handleShowModal()}
-					handleAddNewButton={(newButtonLabel) =>
+					handleCloseForm={() =>
+						handleShowModal()
+					}
+					handleAddNewButton={newButtonLabel =>
 						handleAddButton(newButtonLabel)
 					}
 				/>
